@@ -72,7 +72,11 @@
       var li = document.createElement('li');
       li.className = 'channel-card channel-' + ch.type;
       li.dataset.id = ch.id;
+      var thumb = ch.thumbnail_url
+        ? '<img class="channel-thumb" src="' + ch.thumbnail_url + '" alt="" />'
+        : '';
       li.innerHTML =
+        thumb +
         '<span class="channel-name">' + ch.name + '</span>' +
         '<span class="channel-type">' + (ch.type === 'radio' ? '라디오' : 'TV') + '</span>' +
         '<span class="channel-status" data-status>확인 중…</span>';
@@ -111,8 +115,21 @@
         window.location.replace('index.html');
       });
     }
-    renderChannels(CHANNELS);
-    probeChannels(CHANNELS);
+    // 관리자면 관리 링크 노출
+    try {
+      if (await DB.isAdmin()) {
+        var adminLink = document.getElementById('admin-link');
+        if (adminLink) { adminLink.classList.remove('hidden'); }
+      }
+    } catch (e) { /* 무시: 관리 링크 없이 진행 */ }
+    // 채널을 DB에서 로드
+    try {
+      var channels = await DB.listChannels();
+      renderChannels(channels);
+      probeChannels(channels);
+    } catch (e) {
+      setStatus('채널을 불러오지 못했습니다: ' + e.message);
+    }
   });
 
   window.__player = {
