@@ -27,6 +27,8 @@ body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
 .channel-status { font-size:12px; color: var(--muted); }
 .channel-status.on-air { color:#39d98a; font-weight:600; }
 .channel-status.off-air { color:#f16a6a; }
+.channel-thumb { width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:8px; background:#000; }
+.admin-link { color:var(--accent); font-size:13px; text-decoration:none; margin-right:4px; }
 
 /* 라디오(오디오 전용): 비디오 영역을 아트워크 플레이스홀더로 */
 .player-area.mode-radio .video {
@@ -59,3 +61,17 @@ body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
 .auth-msg.err { color:#f16a6a; }
 .auth-msg.ok { color:#39d98a; }
 .hidden { display:none; }
+
+/* 관리 화면 */
+.admin-form-wrap { margin-bottom:20px; }
+.admin-form { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.admin-form input, .admin-form select { padding:8px; border-radius:8px; border:1px solid #3a4150;
+  background:#0f1115; color:var(--text); font-size:14px; }
+.admin-form .chk { color:var(--muted); font-size:14px; }
+.admin-form-btns { display:flex; gap:8px; }
+.admin-form button { padding:8px 14px; border:none; border-radius:8px; background:var(--accent);
+  color:#04121f; font-weight:700; cursor:pointer; }
+.admin-table { width:100%; border-collapse:collapse; font-size:14px; }
+.admin-table th, .admin-table td { text-align:left; padding:8px; border-bottom:1px solid #262b34; }
+.admin-table button { margin-right:6px; padding:4px 10px; border:1px solid #3a4150; border-radius:6px;
+  background:transparent; color:var(--text); cursor:pointer; font-size:13px; }
