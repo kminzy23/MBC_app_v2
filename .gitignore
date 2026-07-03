@@ -14,6 +14,9 @@ auto.key
 *.key
 *.crt
 
+# Supabase 실제 키가 든 로컬 설정 (예시는 config.example.js)
+frontend/js/config.js
+
 # Windows
 Thumbs.db
 Desktop.ini
