@@ -62,8 +62,8 @@ test/validate.test.js  검증 유닛 테스트 (node)
 - [x] Supabase 클라이언트 초기화·통신 (Invalid credentials 응답 확인)
 - [x] 입력 검증·화면 전환 UI 동작
 - [x] 미로그인 시 player.html → index.html 리다이렉트(가드)
-- [ ] 실제 계정 로그인 → player 표시 → 로그아웃 (사용자 계정으로 최종 확인)
-- [ ] 확인 메일/비번 재설정 메일 흐름 (Redirect URL 설정 후)
+- [x] 실제 계정 로그인 → player 표시 → 로그아웃 (사용자 계정으로 확인 완료)
+- [ ] 확인 메일/비번 재설정 메일 흐름 (Redirect URL 설정 후 — 추후)
 
 ## 한계 / 다음
 - 클라이언트 가드만 있으므로 스트림 URL 직접 접근은 아직 가능 → **Phase 6(서명 URL)**.
