@@ -1,0 +1,19 @@
+# 대용량 바이너리 (각자 다운로드: MediaMTX, Caddy)
+/bin/
+
+# 브라우저/테스트 아티팩트
+.playwright-mcp/
+node_modules/
+
+# 로그/임시
+*.log
+
+# Caddy가 생성한 로컬 인증서/개인키 (커밋 금지)
+auto.crt
+auto.key
+*.key
+*.crt
+
+# Windows
+Thumbs.db
+Desktop.ini

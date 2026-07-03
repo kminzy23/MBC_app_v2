@@ -1,0 +1,30 @@
+###############################################
+# Phase 1 — 로컬 테스트용 MediaMTX 설정
+# RTMP 수신 → HLS 변환. 인증 없음(로컬 전용).
+###############################################
+
+logLevel: info
+
+# --- RTMP 수신 (OBS가 여기로 push) ---
+rtmp: true
+rtmpAddress: :1935
+
+# --- HLS 출력 (뷰어가 여기서 재생) ---
+hls: true
+hlsAddress: :8888
+# 웹 플레이어(:8080)에서 교차 출처로 재생/probe 하므로 모든 출처 허용
+hlsAllowOrigin: '*'
+# push 중인 채널은 시청자가 없어도 HLS를 상시 생성한다.
+# → 온에어 상태 확인(probe)과 재생이 콜드 스타트 없이 즉시 동작.
+hlsAlwaysRemux: true
+# 저지연 불필요 → 표준 HLS (mpegts)
+hlsVariant: mpegts
+
+# --- API (상태 확인용) ---
+api: true
+apiAddress: :9997
+
+# --- 경로 설정 ---
+# all_others = 정의되지 않은 모든 경로. 임의의 스트림 키를 허용한다.
+paths:
+  all_others:

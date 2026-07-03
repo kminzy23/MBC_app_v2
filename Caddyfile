@@ -1,0 +1,17 @@
+# Phase 2 로컬 same-origin 서버
+# :8080 하나에서 정적 프론트를 서빙하고, /live/* 만 MediaMTX(:8888)로 프록시한다.
+# → 페이지와 스트림이 같은 출처가 되어 CORS·쿠키 문제가 사라진다(iOS 사파리 포함).
+# Phase 5에서 이 구성을 그대로 HTTPS·도메인으로 확장한다.
+
+:8080 {
+	# HLS 스트림: /live/* 요청을 MediaMTX로 그대로 전달
+	handle /live/* {
+		reverse_proxy 127.0.0.1:8888
+	}
+
+	# 그 외 모든 경로: 정적 프론트엔드 파일
+	handle {
+		root * frontend
+		file_server
+	}
+}

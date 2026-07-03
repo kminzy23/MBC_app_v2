@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>방송 스트림 모니터링</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header"><h1>방송 스트림</h1></header>
+  <main class="app-main">
+    <section class="player-area">
+      <video id="player" class="video" controls playsinline></video>
+      <div id="player-status" class="player-status">채널을 선택하세요</div>
+    </section>
+    <section class="channels">
+      <h2 class="channels-title">채널</h2>
+      <ul id="channel-list" class="channel-list"></ul>
+    </section>
+  </main>
+  <script src="js/urls.js"></script>
+  <script src="js/channels.js"></script>
+  <script src="js/hls.min.js"></script>
+  <script src="js/player.js"></script>
+</body>
+</html>
