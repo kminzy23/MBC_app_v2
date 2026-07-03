@@ -99,7 +99,18 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', async function () {
+    var session = await Auth.requireAuth();  // 세션 없으면 index.html로 리다이렉트
+    if (!session) { return; }
+    var emailEl = document.getElementById('user-email');
+    if (emailEl) { emailEl.textContent = session.user.email; }
+    var logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async function () {
+        await Auth.signOut();
+        window.location.replace('index.html');
+      });
+    }
     renderChannels(CHANNELS);
     probeChannels(CHANNELS);
   });

@@ -7,7 +7,13 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="app-header"><h1>방송 스트림</h1></header>
+  <header class="app-header">
+    <h1>방송 스트림</h1>
+    <div class="user-box">
+      <span id="user-email" class="user-email"></span>
+      <button id="logout-btn" class="logout-btn">로그아웃</button>
+    </div>
+  </header>
   <main class="app-main">
     <section class="player-area">
       <video id="player" class="video" controls playsinline></video>
@@ -18,6 +24,9 @@
       <ul id="channel-list" class="channel-list"></ul>
     </section>
   </main>
+  <script src="js/config.js"></script>
+  <script src="js/supabase.min.js"></script>
+  <script src="js/auth.js"></script>
   <script src="js/urls.js"></script>
   <script src="js/channels.js"></script>
   <script src="js/hls.min.js"></script>
