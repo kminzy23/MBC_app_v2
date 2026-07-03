@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>로그인 — 방송 스트림</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="auth-wrap">
+    <h1 class="auth-title">방송 스트림</h1>
+
+    <form id="login-form" class="auth-form">
+      <h2>로그인</h2>
+      <input id="login-email" type="email" placeholder="이메일" autocomplete="email" />
+      <input id="login-pw" type="password" placeholder="비밀번호" autocomplete="current-password" />
+      <button type="submit">로그인</button>
+      <a href="#" id="to-signup" class="auth-link">회원가입</a>
+      <a href="#" id="to-reset" class="auth-link">비밀번호 재설정</a>
+    </form>
+
+    <form id="signup-form" class="auth-form hidden">
+      <h2>회원가입</h2>
+      <input id="signup-email" type="email" placeholder="이메일" autocomplete="email" />
+      <input id="signup-pw" type="password" placeholder="비밀번호 (6자 이상)" autocomplete="new-password" />
+      <button type="submit">가입하기</button>
+      <a href="#" id="to-login" class="auth-link">로그인으로</a>
+    </form>
+
+    <form id="reset-form" class="auth-form hidden">
+      <h2>새 비밀번호</h2>
+      <input id="reset-pw" type="password" placeholder="새 비밀번호 (6자 이상)" autocomplete="new-password" />
+      <button type="submit">비밀번호 변경</button>
+    </form>
+
+    <p id="auth-msg" class="auth-msg"></p>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/supabase.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/validate.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
