@@ -1,0 +1,24 @@
+# Phase 5 — 프로덕션 Caddy 설정 (Oracle Ubuntu)
+# 로컬 Caddyfile과 동일한 same-origin 구조를, 도메인+자동 HTTPS로 확장.
+# 사이트 주소를 도메인으로 두면 Caddy가 Let's Encrypt 인증서를 자동 발급/갱신한다.
+#
+# 서버에서 할 일:
+#   1) 아래 YOUR-NAME.duckdns.org 를 실제 DuckDNS 도메인으로 교체
+#   2) 이메일은 인증서 만료 알림용(선택) — 원치 않으면 email 줄(과 {} 블록) 삭제 가능
+{
+	# 인증서 관련 관리 이메일(선택). 원치 않으면 이 블록 전체 삭제 가능.
+	email YOUR-EMAIL@example.com
+}
+
+YOUR-NAME.duckdns.org {
+	# HLS 스트림: /live/* 요청을 MediaMTX(:8888)로 그대로 전달
+	handle /live/* {
+		reverse_proxy 127.0.0.1:8888
+	}
+
+	# 그 외 모든 경로: 정적 프론트엔드 파일(repo를 /opt/mbc-app 로 clone)
+	handle {
+		root * /opt/mbc-app/frontend
+		file_server
+	}
+}
