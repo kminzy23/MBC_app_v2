@@ -1,0 +1,41 @@
+###############################################
+# Phase 5 — 프로덕션 MediaMTX 설정 (Oracle Ubuntu)
+# RTMP 수신(publish 인증) → HLS 변환(익명 읽기 허용).
+# 로컬 mediamtx.yml과 동일하나 authInternalUsers로 인제스트를 보호한다.
+###############################################
+
+logLevel: info
+
+# --- 인증: 익명은 읽기만, publisher 계정만 push ---
+# 서버에서 CHANGE_ME_STRONG_PASSWORD 를 실제 강한 비밀번호로 교체할 것(커밋 금지).
+authInternalUsers:
+  - user: any
+    ips: []
+    permissions:
+      - action: read        # HLS 재생(익명 시청자)
+  - user: publisher
+    pass: CHANGE_ME_STRONG_PASSWORD
+    ips: []
+    permissions:
+      - action: publish     # OBS가 RTMP로 스트림 push
+
+# --- RTMP 수신 (OBS가 여기로 push, 인증 필요) ---
+rtmp: true
+rtmpAddress: :1935
+
+# --- HLS 출력 (Caddy가 /live/* 를 여기로 프록시) ---
+hls: true
+hlsAddress: :8888
+# 프로덕션은 same-origin(Caddy 프록시 뒤)라 CORS 헤더가 불필요 → hlsAllowOrigin 생략.
+# (로컬 mediamtx.yml은 교차 출처 probe 때문에 '*'로 두지만 여기선 필요 없음.)
+# push 중이면 시청자 없어도 HLS 상시 생성 → 온에어 probe/재생 콜드스타트 없음.
+hlsAlwaysRemux: true
+hlsVariant: mpegts
+
+# --- API (로컬 상태 확인용, 외부 비개방) ---
+api: true
+apiAddress: 127.0.0.1:9997
+
+# --- 경로: 정의되지 않은 모든 스트림 키 허용 ---
+paths:
+  all_others:
