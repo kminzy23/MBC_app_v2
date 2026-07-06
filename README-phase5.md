@@ -63,13 +63,18 @@ sudo netfilter-persistent save
 sudo useradd --system --no-create-home --shell /usr/sbin/nologin mediamtx || true
 sudo mkdir -p /opt/mediamtx
 
-# 4-2. arm64 바이너리 다운로드
-#   https://github.com/bluenviron/mediamtx/releases 에서 최신 릴리스의
-#   linux_arm64 에셋 URL을 복사해 아래 <URL> 자리에 붙여넣는다.
-#   (예시 — 릴리스에 맞게 버전/파일명 확인 후 사용)
+# 4-2. 바이너리 다운로드 — CPU 아키텍처에 맞는 에셋 선택
+#   AMD/Intel 인스턴스(예: VM.Standard.E2.1.Micro) → linux_amd64
+#   ARM(Ampere, VM.Standard.A1.Flex)            → linux_arm64
+#   확인법: `uname -m` → x86_64 면 amd64, aarch64 면 arm64.
+#   https://github.com/bluenviron/mediamtx/releases 에서 최신 버전 확인 후 URL 교체 가능.
 cd /tmp
+# --- AMD/Intel (amd64) — 이 배포는 E2.1.Micro라 이걸 사용 ---
 curl -L -o mediamtx.tar.gz \
-  https://github.com/bluenviron/mediamtx/releases/download/v1.19.2/mediamtx_v1.19.2_linux_arm64.tar.gz
+  https://github.com/bluenviron/mediamtx/releases/download/v1.19.2/mediamtx_v1.19.2_linux_amd64.tar.gz
+# --- ARM(Ampere)라면 위 대신 아래 사용 ---
+# curl -L -o mediamtx.tar.gz \
+#   https://github.com/bluenviron/mediamtx/releases/download/v1.19.2/mediamtx_v1.19.2_linux_arm64.tar.gz
 tar xzf mediamtx.tar.gz
 sudo mv mediamtx /opt/mediamtx/mediamtx
 sudo chmod +x /opt/mediamtx/mediamtx
