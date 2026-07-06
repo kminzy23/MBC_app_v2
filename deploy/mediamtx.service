@@ -1,0 +1,18 @@
+[Unit]
+Description=MediaMTX RTMP/HLS media server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# 비특권 사용자로 실행(포트 1935/8888/9997 모두 >1024라 root 불필요).
+User=mediamtx
+Group=mediamtx
+ExecStart=/opt/mediamtx/mediamtx /opt/mediamtx/mediamtx.yml
+Restart=on-failure
+RestartSec=5
+# 안전 강화(선택)
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
