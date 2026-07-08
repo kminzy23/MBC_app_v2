@@ -14,7 +14,16 @@
     if (hls) { hls.destroy(); hls = null; }
     video.removeAttribute('src');
     video.load();
+    video.style.aspectRatio = '';  // 기본 16:9 플레이스홀더로 복귀
   }
+
+  // 실제 영상 비율에 맞춰 플레이어 박스를 조정(검은 테두리 제거).
+  // 라디오(오디오 전용)는 videoWidth=0이라 건너뛰어 16:9 아트워크를 유지한다.
+  video.addEventListener('loadedmetadata', function () {
+    if (video.videoWidth && video.videoHeight) {
+      video.style.aspectRatio = video.videoWidth + ' / ' + video.videoHeight;
+    }
+  });
 
   function playChannel(channel) {
     var url = buildHlsUrl(channel, window.location);
