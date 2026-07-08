@@ -30,7 +30,9 @@ hlsAddress: :8888
 # (로컬 mediamtx.yml은 교차 출처 probe 때문에 '*'로 두지만 여기선 필요 없음.)
 # push 중이면 시청자 없어도 HLS 상시 생성 → 온에어 probe/재생 콜드스타트 없음.
 hlsAlwaysRemux: true
-hlsVariant: mpegts
+# fmp4(CMAF): 프로덕션 검증 결과 이 방식으로 운영(A/V 싱크는 OBS 키프레임 간격 2초로 안정화).
+# 저지연 불필요라 표준 HLS. (로컬 mediamtx.yml은 mpegts지만 프로덕션은 fmp4로 확정)
+hlsVariant: fmp4
 
 # --- API (로컬 상태 확인용, 외부 비개방) ---
 api: true
