@@ -1,56 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>부산MBC 온에어</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#6706D3" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="부산MBC 온에어" />
-  <link rel="apple-touch-icon" href="/icons/icon-180.png" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>부산MBC 온에어</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#6706D3" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="부산MBC 온에어" />
+<link rel="apple-touch-icon" href="/icons/icon-180.png" />
 </head>
 <body>
-  <main class="auth-wrap">
-    <div class="auth-brand">
-      <img src="images/mascot.png" alt="" />
-      <h1 class="auth-title">부산MBC 온에어</h1>
-    </div>
+
+<main class="auth-wrap">
+  <div class="auth-brand">
+    <img src="images/mascot.png" alt="부산MBC 온에어 마스코트">
+    <h1 class="auth-title">부산MBC 온에어</h1>
+  </div>
+
+  <div class="auth-card">
 
     <form id="login-form" class="auth-form">
       <h2>로그인</h2>
-      <input id="login-email" type="email" placeholder="이메일" autocomplete="email" />
-      <input id="login-pw" type="password" placeholder="비밀번호" autocomplete="current-password" />
+      <input id="login-email" type="email" placeholder="이메일" autocomplete="username" required>
+      <input id="login-pw" type="password" placeholder="비밀번호" autocomplete="current-password" required>
       <button type="submit">로그인</button>
-      <a href="#" id="to-signup" class="auth-link">회원가입</a>
-      <a href="#" id="to-reset" class="auth-link">비밀번호 재설정</a>
+      <div>
+        <a href="#" id="to-signup" class="auth-link">회원가입</a>
+        <a href="#" id="to-reset" class="auth-link">비밀번호 찾기</a>
+      </div>
     </form>
 
     <form id="signup-form" class="auth-form hidden">
       <h2>회원가입</h2>
-      <input id="signup-email" type="email" placeholder="이메일" autocomplete="email" />
-      <input id="signup-pw" type="password" placeholder="비밀번호 (6자 이상)" autocomplete="new-password" />
+      <input id="signup-email" type="email" placeholder="이메일" autocomplete="username" required>
+      <input id="signup-pw" type="password" placeholder="비밀번호 (6자 이상)" autocomplete="new-password" required>
       <button type="submit">가입하기</button>
-      <a href="#" id="to-login" class="auth-link">로그인으로</a>
+      <div>
+        <a href="#" id="to-login" class="auth-link">로그인으로</a>
+      </div>
     </form>
 
     <form id="reset-form" class="auth-form hidden">
-      <h2>새 비밀번호</h2>
-      <input id="reset-pw" type="password" placeholder="새 비밀번호 (6자 이상)" autocomplete="new-password" />
-      <button type="submit">비밀번호 변경</button>
+      <h2>비밀번호 재설정</h2>
+      <input id="reset-pw" type="password" placeholder="새 비밀번호 (6자 이상)" autocomplete="new-password" required>
+      <button type="submit">변경하기</button>
     </form>
 
     <p id="auth-msg" class="auth-msg"></p>
-  </main>
+  </div>
+</main>
 
-  <script src="js/config.js"></script>
-  <script src="js/supabase.min.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/validate.js"></script>
-  <script src="js/login.js"></script>
-  <script src="js/pwa.js"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/validate.js"></script>
+<script src="js/login.js"></script>
+<script src="js/pwa.js"></script>
 </body>
 </html>

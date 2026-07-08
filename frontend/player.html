@@ -1,47 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>부산MBC 온에어</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#6706D3" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="부산MBC 온에어" />
-  <link rel="apple-touch-icon" href="/icons/icon-180.png" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>부산MBC 온에어</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#6706D3" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="부산MBC 온에어" />
+<link rel="apple-touch-icon" href="/icons/icon-180.png" />
 </head>
 <body>
-  <header class="app-header">
-    <div class="brand">
-      <img class="brand-logo" src="images/mascot.png" alt="" />
-      <h1>부산MBC 온에어</h1>
-    </div>
-    <div class="user-box">
-      <a id="admin-link" class="admin-link hidden" href="admin.html">관리</a>
-      <span id="user-email" class="user-email"></span>
-      <button id="logout-btn" class="logout-btn">로그아웃</button>
-    </div>
-  </header>
-  <main class="app-main">
-    <section class="player-area">
-      <video id="player" class="video" controls playsinline></video>
-      <div id="player-status" class="player-status">채널을 선택하세요</div>
-    </section>
-    <section class="channels">
-      <h2 class="channels-title">채널</h2>
-      <ul id="channel-list" class="channel-list"></ul>
-    </section>
-  </main>
-  <script src="js/config.js"></script>
-  <script src="js/supabase.min.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/db.js"></script>
-  <script src="js/urls.js"></script>
-  <script src="js/hls.min.js"></script>
-  <script src="js/player.js"></script>
-  <script src="js/pwa.js"></script>
+
+<header class="app-header">
+  <div class="brand">
+    <img src="images/mascot.png" alt="" class="brand-logo">
+    <h1>부산MBC 온에어</h1>
+  </div>
+  <div class="user-box">
+    <a id="admin-link" class="admin-link hidden" href="admin.html">관리</a>
+    <span id="user-email" class="user-email"></span>
+    <button id="logout-btn" class="logout-btn" aria-label="로그아웃">⏻</button>
+  </div>
+</header>
+
+<main class="app-main">
+  <section class="player-area">
+    <video id="player" class="video" controls playsinline></video>
+    <div id="player-status" class="player-status">채널을 선택하세요</div>
+  </section>
+
+  <section class="channels">
+    <h2 class="channels-title">채널</h2>
+    <ul id="channel-list" class="channel-list"></ul>
+  </section>
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/supabase.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/db.js"></script>
+<script src="js/urls.js"></script>
+<script src="js/hls.min.js"></script>
+<script src="js/player.js"></script>
+<script src="js/pwa.js"></script>
 </body>
 </html>

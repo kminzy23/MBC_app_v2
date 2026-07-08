@@ -1,7 +1,7 @@
 // 부산MBC 온에어 — 앱 셸만 캐시하는 서비스워커.
 // 동적(영상/인증/설정)은 절대 캐시하지 않는다.
 // 배포 때 코드가 바뀌면 CACHE 값을 올려서(예: v2) 옛 캐시를 정리한다.
-var CACHE = "mbc-onair-v1";
+var CACHE = "mbc-onair-v2";
 var SHELL = [
   "/", "/index.html", "/player.html", "/admin.html",
   "/css/style.css",
