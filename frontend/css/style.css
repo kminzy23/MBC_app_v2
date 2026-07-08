@@ -1,77 +1,98 @@
-:root { --bg:#0f1115; --card:#1b1f27; --accent:#3da9fc; --text:#e8eaed; --muted:#9aa0a6; }
+/* ===== MBC NEW 웹폰트 ===== */
+@font-face {
+  font-family: "MBC NEW"; src: url("../fonts/MBCNEW-M.ttf") format("truetype");
+  font-weight: 400 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "MBC NEW"; src: url("../fonts/MBCNEW-B.ttf") format("truetype");
+  font-weight: 600 800; font-style: normal; font-display: swap;
+}
+
+/* ===== 라이트 브랜드 테마 ===== */
+:root {
+  --bg:#f4f2f8; --card:#ffffff; --accent:#6706D3; --accent-2:#4664E6;
+  --text:#1f1a2b; --muted:#6f6b7a; --on-air:#FF4141; --border:#e7e3f0;
+}
 * { box-sizing: border-box; }
-body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+body { margin:0; font-family:"MBC NEW", system-ui, -apple-system, "Segoe UI", sans-serif;
        background: var(--bg); color: var(--text); }
-.app-header { padding: 14px 16px; background:#000; display:flex;
-              align-items:center; justify-content:space-between; }
-.app-header h1 { margin:0; font-size:18px; }
+
+/* 헤더 + 브랜드 */
+.app-header { padding: 12px 16px; background:#fff; border-bottom:1px solid var(--border);
+              display:flex; align-items:center; justify-content:space-between; }
+.brand { display:flex; align-items:center; gap:8px; }
+.brand-logo { height:30px; width:30px; object-fit:contain; }
+.app-header h1 { margin:0; font-size:18px; font-weight:800; color: var(--accent); }
 .user-box { display:flex; align-items:center; gap:10px; }
 .user-email { color:var(--muted); font-size:13px; }
-.logout-btn { padding:6px 12px; border:1px solid #3a4150; border-radius:8px;
-              background:transparent; color:var(--text); font-size:13px; cursor:pointer; }
+.logout-btn { padding:6px 12px; border:1px solid var(--border); border-radius:8px;
+              background:#fff; color:var(--text); font-size:13px; cursor:pointer; }
+.logout-btn:active { background:#f0ecf8; }
+
 .app-main { max-width: 720px; margin: 0 auto; padding: 12px; }
 .player-area { position: relative; }
 .video { width:100%; aspect-ratio:16/9; background:#000; border-radius:10px; }
 .player-status { padding:8px 4px; color: var(--muted); font-size:14px; }
 
-/* 채널 카드 목록 */
-.channels-title { font-size:15px; color: var(--muted); margin:16px 4px 8px; }
+/* 채널 카드 */
+.channels-title { font-size:15px; color: var(--muted); margin:16px 4px 8px; font-weight:600; }
 .channel-list { list-style:none; margin:0; padding:0; display:grid;
                 grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap:10px; }
-.channel-card { background: var(--card); border-radius:12px; padding:14px;
-                cursor:pointer; display:flex; flex-direction:column; gap:6px;
-                border:1px solid #262b34; transition: transform .05s ease; }
+.channel-card { background: var(--card); border-radius:12px; padding:14px; cursor:pointer;
+                display:flex; flex-direction:column; gap:6px; border:1px solid var(--border);
+                box-shadow:0 1px 3px rgba(41,21,60,.06); transition: transform .05s ease; }
 .channel-card:active { transform: scale(.98); }
-.channel-name { font-size:16px; font-weight:600; }
+.channel-name { font-size:16px; font-weight:700; }
 .channel-type { font-size:12px; color: var(--muted); }
 .channel-status { font-size:12px; color: var(--muted); }
-.channel-status.on-air { color:#39d98a; font-weight:600; }
-.channel-status.off-air { color:#f16a6a; }
+.channel-status.on-air { color: var(--on-air); font-weight:700; }
+.channel-status.off-air { color: var(--muted); }
 .channel-thumb { width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:8px; background:#000; }
-.admin-link { color:var(--accent); font-size:13px; text-decoration:none; margin-right:4px; }
+.admin-link { color:var(--accent); font-size:13px; text-decoration:none; margin-right:4px; font-weight:600; }
 
-/* 라디오(오디오 전용): 비디오 영역을 아트워크 플레이스홀더로 */
-.player-area.mode-radio .video {
-  background: radial-gradient(circle at 50% 40%, #2a3550, #0f1115);
-}
+/* 라디오(오디오 전용) */
+.player-area.mode-radio .video { background: radial-gradient(circle at 50% 40%, #8F83FF, #6706D3); }
 .player-area.mode-radio::before {
-  content: "🎵 라디오"; position: absolute; z-index: 2;
-  left: 0; right: 0; top: 40px; text-align: center;
-  font-size: 22px; color: var(--text); pointer-events: none;
+  content: "🎵 라디오"; position: absolute; z-index: 2; left: 0; right: 0; top: 40px;
+  text-align: center; font-size: 22px; color: #fff; pointer-events: none;
 }
 
-/* 모바일 좁은 화면 */
 @media (max-width: 420px) {
   .channel-list { grid-template-columns: repeat(2, 1fr); }
   .app-main { padding: 8px; }
 }
 
-/* 인증 화면 */
-.auth-wrap { max-width: 360px; margin: 40px auto; padding: 16px; }
-.auth-title { text-align:center; font-size:20px; margin-bottom:20px; }
+/* ===== 인증 화면 ===== */
+.auth-wrap { max-width: 360px; margin: 32px auto; padding: 16px; }
+.auth-brand { display:flex; flex-direction:column; align-items:center; gap:8px; margin-bottom:16px; }
+.auth-brand img { width:96px; height:96px; object-fit:contain; }
+.auth-title { text-align:center; font-size:22px; margin:0; font-weight:800; color: var(--accent); }
 .auth-form { display:flex; flex-direction:column; gap:10px; background:var(--card);
-             padding:20px; border-radius:12px; border:1px solid #262b34; }
+             padding:20px; border-radius:14px; border:1px solid var(--border);
+             box-shadow:0 2px 10px rgba(41,21,60,.06); }
 .auth-form h2 { margin:0 0 6px; font-size:16px; }
-.auth-form input { padding:12px; border-radius:8px; border:1px solid #3a4150;
-                   background:#0f1115; color:var(--text); font-size:15px; }
+.auth-form input { padding:12px; border-radius:8px; border:1px solid var(--border);
+                   background:#fff; color:var(--text); font-size:15px; }
+.auth-form input:focus { outline:2px solid var(--accent); border-color:transparent; }
 .auth-form button { padding:12px; border:none; border-radius:8px; background:var(--accent);
-                    color:#04121f; font-weight:700; font-size:15px; cursor:pointer; }
-.auth-link { color:var(--muted); font-size:13px; text-decoration:none; text-align:center; }
+                    color:#fff; font-weight:700; font-size:15px; cursor:pointer; }
+.auth-form button:active { background:#530aa8; }
+.auth-link { color:var(--accent-2); font-size:13px; text-decoration:none; text-align:center; }
 .auth-msg { text-align:center; font-size:14px; min-height:20px; }
-.auth-msg.err { color:#f16a6a; }
-.auth-msg.ok { color:#39d98a; }
+.auth-msg.err { color:#c0392b; }
+.auth-msg.ok { color:#2e7d5b; }
 .hidden { display:none; }
 
-/* 관리 화면 */
+/* ===== 관리 화면 ===== */
 .admin-form-wrap { margin-bottom:20px; }
 .admin-form { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
-.admin-form input, .admin-form select { padding:8px; border-radius:8px; border:1px solid #3a4150;
-  background:#0f1115; color:var(--text); font-size:14px; }
+.admin-form input, .admin-form select { padding:8px; border-radius:8px; border:1px solid var(--border);
+  background:#fff; color:var(--text); font-size:14px; }
 .admin-form .chk { color:var(--muted); font-size:14px; }
 .admin-form-btns { display:flex; gap:8px; }
 .admin-form button { padding:8px 14px; border:none; border-radius:8px; background:var(--accent);
-  color:#04121f; font-weight:700; cursor:pointer; }
+  color:#fff; font-weight:700; cursor:pointer; }
 .admin-table { width:100%; border-collapse:collapse; font-size:14px; }
-.admin-table th, .admin-table td { text-align:left; padding:8px; border-bottom:1px solid #262b34; }
-.admin-table button { margin-right:6px; padding:4px 10px; border:1px solid #3a4150; border-radius:6px;
-  background:transparent; color:var(--text); cursor:pointer; font-size:13px; }
+.admin-table th, .admin-table td { text-align:left; padding:8px; border-bottom:1px solid var(--border); }
+.admin-table button { margin-right:6px; padding:4px 10px; border:1px solid var(--border); border-radius:6px;
+  background:#fff; color:var(--text); cursor:pointer; font-size:13px; }
