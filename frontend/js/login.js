@@ -3,11 +3,21 @@
   var signupForm = document.getElementById('signup-form');
   var resetForm = document.getElementById('reset-form');
   var msg = document.getElementById('auth-msg');
+  var verifyNotice = document.getElementById('verify-notice');
+  var verifyEmail = document.getElementById('verify-email');
 
   function show(el) {
     [loginForm, signupForm, resetForm].forEach(function (f) { f.classList.add('hidden'); });
+    if (verifyNotice) { verifyNotice.classList.add('hidden'); }
     el.classList.remove('hidden');
     msg.textContent = '';
+  }
+  // 가입 후 "메일 확인" 안내 화면
+  function showVerify(email) {
+    [loginForm, signupForm, resetForm].forEach(function (f) { f.classList.add('hidden'); });
+    msg.textContent = '';
+    if (verifyEmail) { verifyEmail.textContent = email; }
+    if (verifyNotice) { verifyNotice.classList.remove('hidden'); }
   }
   function setMsg(text, isError) {
     msg.textContent = text;
@@ -48,10 +58,17 @@
     if (pwErr) { setMsg(pwErr, true); return; }
     setMsg('가입 중…', false);
     var res = await Auth.signUp(email, pw);
-    if (res.error) { setMsg('가입 실패: ' + res.error.message, true); return; }
-    setMsg('가입 완료! 확인 메일의 링크를 눌러 인증한 뒤 로그인하세요.', false);
-    show(loginForm);
+    if (res.error) {
+      var m = res.error.message || '';
+      if (/rate limit/i.test(m)) { setMsg('메일 발송 한도에 걸렸어요. 잠시 후 다시 시도해 주세요.', true); }
+      else { setMsg('가입 실패: ' + m, true); }
+      return;
+    }
+    // 이메일 확인이 꺼져 있으면 세션이 바로 생김 → 플레이어로. 켜져 있으면 안내 화면.
+    if (res.data && res.data.session) { window.location.replace('player.html'); return; }
+    showVerify(email);
   });
+  document.getElementById('verify-to-login').addEventListener('click', function () { show(loginForm); });
 
   // 비밀번호 복구 링크로 들어온 경우: 새 비밀번호 폼 표시
   Auth.client.auth.onAuthStateChange(function (event) {
